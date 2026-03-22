@@ -1,9 +1,10 @@
-// Baby Shower Site Data
+// Baby Shower Site Data — generated 3/22/2026, 3:24:44 PM
 // Upload this file to your GitHub repo alongside index.html
+// It will automatically load for all visitors on all devices
 window.BS_SITE_DATA = {
   "adminPw": "babyboy2026",
   "envScript": "You've been invited...",
-  "envDate": "05 \u00b7 02 \u00b7 26",
+  "envDate": "05 · 02 · 26",
   "envReturn": "From: The Smith Family",
   "taglinePrefix": "A Little",
   "honoree": "Niki Liapis",
@@ -22,7 +23,7 @@ window.BS_SITE_DATA = {
   "day": "02",
   "time": "12:00pm - 02:00pm",
   "venue": "The Goose Clubhouse",
-  "address": "123 Pond Ln \u00b7 Gooseville, GA 1233",
+  "address": "123 Pond Ln · Gooseville, GA 1233",
   "itinerary": [
     {
       "time": "2 PM",
@@ -52,36 +53,15 @@ window.BS_SITE_DATA = {
     "dc-raffle",
     "dc-bunting"
   ],
-  "customImages": [
-    {
-      "id": "dc-custom-1774204383971-1759",
-      "src": "",
-      "caption": ""
-    },
-    {
-      "id": "dc-custom-1774204387435-9337",
-      "src": "",
-      "caption": ""
-    },
-    {
-      "id": "dc-custom-1774204390883-382",
-      "src": "",
-      "caption": ""
-    },
-    {
-      "id": "dc-custom-1774204393895-5715",
-      "src": "",
-      "caption": ""
-    }
-  ],
-  "emojiEnvStamp": "\ud83e\udda2",
-  "emojiEnvDeco": "\ud83e\udda2",
-  "emojiInvite": "\ud83e\udda2",
-  "emojiItinerary": "\ud83e\udda2",
-  "emojiRegistry": "\ud83e\udda2 \ud83e\udda2",
-  "emojiRaffle": "\ud83e\udda2 \ud83c\udf81 \ud83e\udda2",
-  "emojiRsvpBtn": "\ud83e\udda2",
-  "emojiRsvpNote": "\ud83e\udda2",
+  "customImages": [],
+  "emojiEnvStamp": "🦢",
+  "emojiEnvDeco": "🦢",
+  "emojiInvite": "🦢",
+  "emojiItinerary": "🦢",
+  "emojiRegistry": "🦢 🦢",
+  "emojiRaffle": "🦢 🎁 🦢",
+  "emojiRsvpBtn": "🦢",
+  "emojiRsvpNote": "🦢",
   "_layout": {
     "dc-custom-1774204387435-9337": {
       "left": 600.5,
