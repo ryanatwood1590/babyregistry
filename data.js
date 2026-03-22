@@ -1,4 +1,4 @@
-// Baby Shower Site Data — generated 3/22/2026, 2:35:21 PM
+// Baby Shower Site Data — generated 3/22/2026, 2:39:48 PM
 // Upload this file to your GitHub repo alongside index.html
 // It will automatically load for all visitors on all devices
 window.BS_SITE_DATA = {
@@ -152,12 +152,12 @@ window.BS_SITE_DATA = {
     }
   },
   "_mobile": [
+    "dc-custom-1774204387435-9337",
     "dc-custom-1774204383971-1759",
     "dc-registry",
-    "dc-rsvp",
-    "dc-custom-1774204387435-9337",
     "dc-custom-1774204390883-382",
-    "dc-custom-1774204393895-5715"
+    "dc-custom-1774204393895-5715",
+    "dc-rsvp"
   ],
   "_envPol": {
     "env-pol-1": {
