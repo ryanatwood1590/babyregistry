@@ -1,4 +1,4 @@
-// Baby Shower Site Data — generated 3/22/2026, 12:09:12 PM
+// Baby Shower Site Data — generated 3/22/2026, 12:21:37 PM
 // Upload this file to your GitHub repo alongside index.html
 // It will automatically load for all visitors on all devices
 window.BS_SITE_DATA = {
@@ -14,7 +14,7 @@ window.BS_SITE_DATA = {
   "regUrl": "",
   "babyName": "Baby Boy",
   "rafflePrize": "a special prize at the shower",
-  "bunting": "Come Celebrate! 🦢",
+  "bunting": "A Silly Goose is Almost Loose!",
   "rsvpDeadline": "May 14th",
   "rsvpNote": "We can't wait to celebrate with you!",
   "polCap1": "",
@@ -49,7 +49,6 @@ window.BS_SITE_DATA = {
   "hiddenCards": [
     "dc-invite",
     "dc-itinerary",
-    "dc-bunting",
     "dc-photos"
   ],
   "customImages": [
@@ -68,17 +67,17 @@ window.BS_SITE_DATA = {
   "emojiRsvpBtn": "🦢",
   "emojiRsvpNote": "🦢",
   "_layout": {
+    "dc-custom-1774195263840-5380": {
+      "left": 948,
+      "top": 114,
+      "rot": 6.5388,
+      "width": 501
+    },
     "dc-registry": {
       "left": 621,
       "top": 682,
       "rot": -10.0152,
       "width": 396
-    },
-    "dc-bunting": {
-      "left": 205,
-      "top": 810,
-      "rot": -4,
-      "width": 500
     },
     "dc-raffle": {
       "left": 900,
@@ -91,6 +90,12 @@ window.BS_SITE_DATA = {
       "top": 1367,
       "rot": 0.322787,
       "width": 818
+    },
+    "dc-bunting": {
+      "left": 467,
+      "top": 0,
+      "rot": -4,
+      "width": 599
     },
     "dc-photos": {
       "left": 281,
@@ -109,12 +114,6 @@ window.BS_SITE_DATA = {
       "top": 1340,
       "rot": 3.5,
       "width": 450
-    },
-    "dc-custom-1774195263840-5380": {
-      "left": 948,
-      "top": 114,
-      "rot": 6.5388,
-      "width": 501
     }
   },
   "_mobile": [
