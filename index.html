@@ -308,7 +308,7 @@ body{
 .pol-photo .pht{font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-text);}
 .pol-photo input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .pol-cap{position:absolute;bottom:7px;left:0;right:0;text-align:center;font-family:'Great Vibes',cursive;font-size:1.3rem;color:var(--text-light);}
-.custom-img-card{background:white;padding:14px 14px 44px;box-shadow:var(--shadow);border-radius:3px;position:relative;}
+.custom-img-card{background:white;padding:10px 10px 38px;box-shadow:var(--shadow);border-radius:3px;position:relative;}
 .custom-img-card img{width:100%;border-radius:2px;display:block;}
 .custom-img-card .pol-cap{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-family:'Great Vibes',cursive;font-size:1.3rem;color:var(--text-light);}
 .invite-card{background-image:repeating-linear-gradient(0deg,transparent,transparent 20px,rgba(168,208,234,0.13) 20px,rgba(168,208,234,0.13) 21px),repeating-linear-gradient(90deg,transparent,transparent 20px,rgba(168,208,234,0.13) 20px,rgba(168,208,234,0.13) 21px);background-color:#f8fbfe;border:2px solid var(--blue-soft);border-radius:10px;padding:50px 42px 46px;text-align:center;box-shadow:var(--shadow);}
@@ -500,6 +500,10 @@ body{
   .card-del-btn{display:none !important;}
   #drag-toolbar{display:none !important;}
   #arrange-btn{display:none !important;}
+
+  /* Custom image cards — full width on mobile */
+  .dcard[id^="dc-custom-"]{width:100% !important;max-width:100% !important;}
+  .custom-img-card{padding:8px 8px 34px !important;}
 
   /* Tape stays visible */
   .t-tc{top:-10px;}
@@ -1306,7 +1310,7 @@ function renderCustomCards(images){
     div.className = 'dcard';
     div.id = id;
     div.dataset.card = id;
-    div.style.width = '320px';
+    div.style.width = 'min(460px, 90vw)'; // responsive default
     div.innerHTML = ''
       + '<div class="drag-handle"><span class="dots">⋮⋮⋮</span> drag to move <span class="dots">⋮⋮⋮</span></div>'
       + '<div class="rotate-handle" title="Rotate">↻</div>'
