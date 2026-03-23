@@ -1268,6 +1268,9 @@ function applyToPage(s){
   if(s.guestCount===false){var gf=document.getElementById('rsvp-guests');if(gf)gf.style.display='none';}
   if(s.messageField===false){var mf=document.getElementById('rsvp-message');if(mf)mf.style.display='none';}
   renderCustomCards(s.customImages||[]);
+  // Restore env photos from settings (handles data.js and localStorage)
+  if(s.envPhoto1) applyEnvPhoto(1, s.envPhoto1);
+  if(s.envPhoto2) applyEnvPhoto(2, s.envPhoto2);
 }
 function renderItinerary(items){
   var c=document.getElementById('d-itinerary');
@@ -1544,12 +1547,27 @@ function generateDataJs(){
   if(envPol)  try{ data._envPol  = JSON.parse(envPol);  }catch(e){}
   if(mobile)  try{ data._mobile  = JSON.parse(mobile);  }catch(e){}
 
-  // Serialize safely — JSON.stringify handles all special chars
-  var json = JSON.stringify(data, null, 2);
+  // Explicitly pull env photos from localStorage in case they were uploaded
+  // after the last data.js was generated
+  var localData = {};
+  try{ localData = JSON.parse(localStorage.getItem('bsData')||'{}'); }catch(e){}
+  if(localData.envPhoto1) data.envPhoto1 = localData.envPhoto1;
+  if(localData.envPhoto2) data.envPhoto2 = localData.envPhoto2;
 
-  // Build the data.js file content
-  // Escape closing tag sequences in the JSON just in case
+  // Strip large custom image card photos — they must be re-uploaded via admin
+  // (too large for GitHub web upload)
+  if(data.customImages){
+    data.customImages = data.customImages.map(function(img){
+      return Object.assign({}, img, {src: ''});
+    });
+  }
+
+  // Serialize safely
+  var json = JSON.stringify(data, null, 2);
   var safeJson = json.replace(/<\//g, '<\\/');
+
+  // Check size and warn if large
+  var sizeKB = Math.round(safeJson.length / 1024);
   var fileContent = [
     '// Baby Shower Site Data — generated ' + new Date().toLocaleString(),
     '// Upload this file to your GitHub repo alongside index.html',
@@ -1557,7 +1575,6 @@ function generateDataJs(){
     'window.BS_SITE_DATA = ' + safeJson + ';'
   ].join('\n');
 
-  // Download
   var blob = new Blob([fileContent], {type: 'text/javascript;charset=utf-8'});
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a');
@@ -1565,7 +1582,11 @@ function generateDataJs(){
   document.body.appendChild(a); a.click();
   document.body.removeChild(a);
   setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
-  showMsg('dataje-msg', '✓ data.js downloaded! Upload it to your GitHub repo.', 5000);
+
+  var msg = sizeKB > 900
+    ? '⚠ data.js is ' + sizeKB + 'KB — too large for GitHub web upload. Use GitHub Desktop instead.'
+    : '✓ data.js downloaded (' + sizeKB + 'KB)! Upload it to your GitHub repo.';
+  showMsg('dataje-msg', msg, 6000);
 }
 
 function copySettings(){
