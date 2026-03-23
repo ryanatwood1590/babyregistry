@@ -623,7 +623,7 @@ body{
       </div>
       <div class="admin-card">
         <h3>📷 Envelope Photos</h3>
-        <div class="card-sub">Upload the two photos that appear inside the envelope when it opens.</div>
+        <div class="card-sub">Upload the two photos that appear inside the envelope when it opens. Or paste a URL from your GitHub repo.</div>
         <div class="field-row">
           <div class="field-group">
             <label>Photo 1</label>
@@ -635,6 +635,10 @@ body{
               <p style="font-size:0.72rem;color:var(--text-light);margin-top:6px;">Click to upload</p>
             </label>
             <input type="file" id="env-admin-upload-1" accept="image/*" style="display:none;" onchange="loadEnvPhotoFromAdmin(this,1)">
+            <div style="margin-top:8px;display:flex;gap:6px;align-items:center;">
+              <input type="url" id="env-photo-url-1" placeholder="Or paste GitHub URL…" style="flex:1;font-size:0.72rem;padding:7px 10px;border:1.5px solid var(--blue-mid);border-radius:8px;font-family:'Jost',sans-serif;">
+              <button class="btn-secondary btn-sm" onclick="loadEnvPhotoFromUrl(1)" style="white-space:nowrap;">Use URL</button>
+            </div>
             <button class="btn-secondary btn-sm" onclick="clearEnvPhoto(1)" style="margin-top:6px;width:100%;">✕ Remove Photo 1</button>
           </div>
           <div class="field-group">
@@ -647,6 +651,10 @@ body{
               <p style="font-size:0.72rem;color:var(--text-light);margin-top:6px;">Click to upload</p>
             </label>
             <input type="file" id="env-admin-upload-2" accept="image/*" style="display:none;" onchange="loadEnvPhotoFromAdmin(this,2)">
+            <div style="margin-top:8px;display:flex;gap:6px;align-items:center;">
+              <input type="url" id="env-photo-url-2" placeholder="Or paste GitHub URL…" style="flex:1;font-size:0.72rem;padding:7px 10px;border:1.5px solid var(--blue-mid);border-radius:8px;font-family:'Jost',sans-serif;">
+              <button class="btn-secondary btn-sm" onclick="loadEnvPhotoFromUrl(2)" style="white-space:nowrap;">Use URL</button>
+            </div>
             <button class="btn-secondary btn-sm" onclick="clearEnvPhoto(2)" style="margin-top:6px;width:100%;">✕ Remove Photo 2</button>
           </div>
         </div>
@@ -1987,6 +1995,17 @@ function applyEnvPhoto(num, src){
   }
 }
 
+function loadEnvPhotoFromUrl(num){
+  var input = document.getElementById('env-photo-url-'+num);
+  var url = input ? input.value.trim() : '';
+  if(!url){ alert('Please paste a URL first.'); return; }
+  var s=gs();
+  if(num===1) s.envPhoto1=url; else s.envPhoto2=url;
+  ss(s);
+  applyEnvPhoto(num, url);
+  updateEnvAdminPreview(num, url);
+}
+
 function updateEnvAdminPreview(num, src){
   var preview     = document.getElementById('env-upload-preview-'+num);
   var previewImg  = document.getElementById('env-admin-preview-'+num);
@@ -2021,8 +2040,15 @@ function restoreEnvPhotos(){
 
 function refreshEnvAdminPreviews(){
   var s=gs();
-  updateEnvAdminPreview(1, s.envPhoto1||'');
-  updateEnvAdminPreview(2, s.envPhoto2||'');
+  [1,2].forEach(function(num){
+    var src = num===1 ? (s.envPhoto1||'') : (s.envPhoto2||'');
+    updateEnvAdminPreview(num, src);
+    // If it's a URL (not base64), populate the URL field too
+    if(src && !src.startsWith('data:')){
+      var urlInput = document.getElementById('env-photo-url-'+num);
+      if(urlInput) urlInput.value = src;
+    }
+  });
 }
 function loadPhoto(input,imgId,phId){
   if(!input.files[0]) return;
